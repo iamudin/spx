@@ -35,13 +35,12 @@ const compressAndPreview = async (file, preview, dataTransfer, quality) => {
     const reader = new FileReader();
     reader.onload = (e) => {
         const wrapper = document.createElement('div');
-        wrapper.style.width = '150px';
+        wrapper.style.width = '190px';
         wrapper.className = 'text-center position-relative';
 
         wrapper.innerHTML = `
-            <img src="${e.target.result}" class="img-thumbnail mb-1 ml-2" style="height: 120px; object-fit: cover;" alt="Preview">
-            <small class="text-muted d-block">⬇ ${originalSizeKB} KB → ${compressedSizeKB} KB</small>
-            <select class="form-select form-select-sm mt-1 compression-select mb-2">
+            <img src="${e.target.result}" class="img-thumbnail mb-1 ml-2" style="height: 120px; object-fit: cover;" alt="Preview" >
+            <select style="display:none" class="form-select form-select-sm mt-1 compression-select mb-2">
                 <option value="0.6" ${quality === 0.6 ? 'selected' : ''}>Sedang (60%)</option>
                
               

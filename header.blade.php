@@ -27,17 +27,31 @@
                 <a href="#" class="hover:text-red-600">Lowongan</a>
                 <a href="#" class="hover:text-red-600">Tentang Kami</a>
                 <a href="#" class="hover:text-red-600">Kontak</a>
-                <a href="#" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">
+                @if(!Session::has('applier_id'))
+                <a href="/auth" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">
                     Login
                 </a>
+                @else 
+                 <a href="/auth/dashboard" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">
+                    Dashboard
+                </a>
+                @endif
             </nav>
 
             <!-- Mobile Actions -->
             <div class="md:hidden flex items-center gap-3">
-                <a href="#"
+                @if(!Session::has('applier_id'))
+
+                <a href="/auth"
                    class="bg-red-600 text-white px-4 py-2 rounded-lg text-sm">
                     Login
                 </a>
+                @else  
+                  <a href="/auth/dashboard"
+                   class="bg-red-600 text-white px-4 py-2 rounded-lg text-sm">
+                    Dashboard
+                </a>
+                @endif
                 <button id="menu-toggle" class="text-2xl">
                     ☰
                 </button>

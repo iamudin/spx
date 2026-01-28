@@ -9,12 +9,31 @@ add_route('public', [
     'method' => ['get','post'],
     'function' => 'login',
     'controller' => 'App\Http\Controllers\VacancyController',
-]);add_route('public', [
+]);
+
+add_route('public', [
     'name' => 'mitra.profile',
     'path' => 'auth/profile',
     'method' => ['get','post'],
     'function' => 'profile',
     'controller' => 'App\Http\Controllers\VacancyController',
+    'middleware'=>'applier.exists'
+]);
+add_route('public', [
+    'name' => 'mitra.ajukan',
+    'path' => 'auth/ajukan',
+    'method' => ['get','post'],
+    'function' => 'dashboard',
+    'controller' => 'App\Http\Controllers\VacancyController',
+    'middleware'=>'applier.exists'
+]);
+add_route('public', [
+    'name' => 'mitra.dashboard',
+    'path' => 'auth/dashboard',
+    'method' => ['get','post'],
+    'function' => 'dashboard',
+    'controller' => 'App\Http\Controllers\VacancyController',
+    'middleware'=>'applier.exists'
 ]);
 add_module([
     'position' => 1,
