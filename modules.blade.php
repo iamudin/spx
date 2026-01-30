@@ -10,7 +10,23 @@ add_route('public', [
     'function' => 'login',
     'controller' => 'App\Http\Controllers\VacancyController',
 ]);
+add_route('public', [
+    'name' => 'mitra.logout',
+    'path' => 'auth/logout',
+    'method' => ['get', 'post'],
+    'function' => 'logout',
+    'controller' => 'App\Http\Controllers\VacancyController',
+    'middleware' => 'applier.exists'
+]);
 
+add_route('public', [
+    'name' => 'mitra.apply',
+    'path' => 'jobs-apply',
+    'method' => ['get', 'post'],
+    'function' => 'jobsApply',
+    'controller' => 'App\Http\Controllers\VacancyController',
+    'middleware' => 'applier.exists'
+]);
 add_route('public', [
     'name' => 'mitra.profile',
     'path' => 'auth/profile',
@@ -27,14 +43,7 @@ add_route('public', [
     'controller' => 'App\Http\Controllers\VacancyController',
     'middleware'=>'applier.exists'
 ]);
-add_route('public', [
-    'name' => 'mitra.dashboard',
-    'path' => 'auth/dashboard',
-    'method' => ['get','post'],
-    'function' => 'dashboard',
-    'controller' => 'App\Http\Controllers\VacancyController',
-    'middleware'=>'applier.exists'
-]);
+
 add_module([
     'position' => 1,
     'name' => 'regencies',
@@ -83,7 +92,7 @@ add_module([
     'datatable' => [
         'custom_column' => false,
         'data_title' => 'Kecamatan',
-        'childs_count'=> 'Total HUB'
+        'child_count'=> 'Total HUB'
     ],
     'form' => [
         'unique_title' => true,
@@ -167,34 +176,40 @@ add_module([
         'tag' => true,
         'looping_name' => 'Kontak darurat',
         'looping_data' => array(
-    ['Nama', 'text'],
+    ['Nama Lengkap', 'text'],
     ['Hubungan', 'text'],
     ['No HP ', 'text']),
         'custom_field' =>[
 
     ['Data Identitas', 'break'],
-    ['Nama Lengkap', 'text'],
+    ['Nama', 'text'],
     ['NIK', 'number'],
     ['Tanggal Lahir', 'date'],
     ['No SIM', 'text'],
     ['Expired SIM', 'date'],
-    ['No. WhatsApp', 'tel'],
     ['Email Aktif', 'email'],
-    ['Alamat saat ini', 'textarea'],
-    ['Bank', 'text'],
-    ['Pemilik Rekening', 'text'],
+    ['Nama Bank', 'text'],
+    ['Nama Pemilik Rekening', 'text'],
     ['No. Rekening', 'number'],
     ['Data Kendaraan', 'break'],
     ['Jenis dan Merk Kendaraan', 'text'],
     ['Tahun Pembuatan', 'text'],
+    ['No Stnk', 'text'],
+    ['Tanggal Berlaku Stnk', 'text'],
+    ['Tanggal Berlaku Pajak Kendaraan', 'text'],
     ['No Plat Motor', 'text'],
+    ['No SIM', 'text'],
+    ['Type SIM', 'text'],
+    ['Masa Berlaku SIM', 'date'],
     ['Domisili', 'break'],
+    ['Alamat saat ini', 'textarea'],
     ['Kelurahan', 'text'],
     ['Kecamatan', 'text'],
     ['Kabupaten', 'text'],
     ['Lampiran Wajib', 'break'],
-    ['Foto SIM (Jika SIM Aktif)', 'file'],
-    ['Foto STNK', 'file'],
+            ['Foto SIM', 'file'],
+    ['Foto STNK Tampak Depan', 'file'],
+            ['Foto STNK Tampak Belakang', 'file'],
     ['Foto KTP', 'file'],
     ['Foto Kartu Keluarga', 'file'],
     ['Foto Ijazah', 'file'],
